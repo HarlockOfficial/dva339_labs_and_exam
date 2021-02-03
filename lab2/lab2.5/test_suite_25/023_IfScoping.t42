@@ -1,0 +1,15 @@
+// 50
+void main ()
+{
+  int x; bool b;
+	x = 5;
+	b = true;
+	
+	if(b)
+	{
+		x = x * 10;
+	}
+	
+	print(x);
+	return;
+}

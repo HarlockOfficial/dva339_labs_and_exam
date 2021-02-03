@@ -1,0 +1,14 @@
+// pass
+void main ()
+{
+	int x;
+	int y;
+	
+	y = 5;
+	x = y = 10;
+	
+	print(x);
+	print(y);
+	
+	return;
+}

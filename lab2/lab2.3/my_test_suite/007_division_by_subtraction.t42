@@ -1,0 +1,12 @@
+//2020 123 16 52
+void main(){
+    int dividend;
+    int divisor;
+    int quotient;
+    int reminder;
+    dividend = 2020;
+    divisor = 123;
+    quotient = dividend/divisor;
+    reminder = dividend - quotient*divisor;
+    print(dividend, divisor, quotient, reminder);
+}

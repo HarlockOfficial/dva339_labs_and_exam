@@ -1,0 +1,4 @@
+//True
+//True
+void main(){print(true);print(true);return;print(false);}
+

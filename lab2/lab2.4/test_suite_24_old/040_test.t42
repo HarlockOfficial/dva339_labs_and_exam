@@ -1,0 +1,2 @@
+// fail 2 22
+void main() { int x; x = foo(); } bool foo(){}

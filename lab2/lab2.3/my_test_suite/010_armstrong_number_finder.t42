@@ -1,0 +1,57 @@
+//0
+//1
+//2
+//3
+//4
+//5
+//6
+//7
+//8
+//9
+//153
+//370
+//371
+//407
+//1634
+int main(){
+    int upper_bound;
+    upper_bound = 5000;
+    armstrong_number_finder(upper_bound);
+    return 0;
+}
+
+void armstrong_number_finder(int limit){
+    int n;
+    while(n<=limit){
+        if(is_armstrong_number(n)){
+            print(n);
+        }
+        n = n+1;
+    }
+}
+
+bool is_armstrong_number(int n){
+    int tmp_n;
+    int reminder;
+    int sum;
+    int exponent;
+    tmp_n = n;
+    while(n>0){
+        exponent = exponent + 1;
+        n = n/10;
+    }
+    n = tmp_n;
+    while(n>0){
+        reminder = n%10;
+        sum = sum + power(reminder, exponent);
+        n = n/10;
+    }
+    return sum == tmp_n;
+}
+
+int power(int base, int exponent){
+    if(exponent == 1){
+        return base;
+    }
+    return base * power(base, exponent-1);
+}

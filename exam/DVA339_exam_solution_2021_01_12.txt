@@ -1,0 +1,565 @@
+﻿Ex 1
+Input string: acaaccac
+rule 1: a    { Console.Write("1"); }	//a
+rule 2: ca*  { Console.Write("2"); }	//c and then 0 or more a
+rule 3: a*c  { Console.Write("3"); }	//0 or more a and then c
+
+The lexer will shift to solve conflicts, the output will be
+"3" -> rule 3, now the string to parse is aaccac (parsed ac)
+"3" -> rule 3, now the string to parse is cac (parsed aac)
+"2" -> rule 2, now the string to parse is c	(parsed ca)
+"2" -> rule 2, now the string to parse is empty (considering len(a) = 0)
+rule 1 is never used, because of the input string
+The final output is "3322"
+
+
+Ex 2
+We write the grammar in a file called 
+grammar.gr like this:
+
+%start E
+
+%token ID
+%token NUM
+
+%token COMMA
+%token COLUMN
+%token DOT
+%token LCURLYBRACE
+%token RCURLYBRACE
+
+%%
+
+E : E DOT ID
+	| LCURLYBRACE FldsOpt RCURLYBRACE
+	| NUM
+	| ID;
+FldsOpt : Flds | ;
+Flds : ID COLUMN E | Flds COMMA Flds;
+
+then we execute llanalyze using this command:
+java -cp ./llanalyze.jar Iota.util.grammar.LLAnalyze < grammar.gr
+
+we get many First First conflicts, we rewrite the grammar like this:
+
+%start E
+
+%token ID
+%token NUM
+
+%token COMMA
+%token COLUMN
+%token DOT
+%token LCURLYBRACE
+%token RCURLYBRACE
+
+%%
+
+E : Exprs Exprss;
+Exprss : E DOT ID | ;
+Exprs : LCURLYBRACE FldsOpt RCURLYBRACE
+	| NUM
+	| ID;
+FldsOpt : Flds | ;
+Flds : ID COLUMN E 
+		| Flds COMMA Flds;
+
+now we fixed the first first conflicts present in E, the last conflict is in Flds
+
+%start E
+
+%token ID
+%token NUM
+
+%token COMMA
+%token COLUMN
+%token DOT
+%token LCURLYBRACE
+%token RCURLYBRACE
+
+%%
+
+E : Exprs Exprss;
+Exprss : E DOT ID | ;
+Exprs : LCURLYBRACE FldsOpt RCURLYBRACE
+	| NUM
+	| ID;
+FldsOpt : Flds | ;
+Flds : ID COLUMN E Seq;
+Seq : COMMA Flds | ;
+
+Now the grammar is in LL(1) form
+
+
+Ex 3
+
+The extended grammar is :
+E : Exprs Exprss;
+Exprss : E Es | ;
+Es : DOT ID | EQUALS E;
+Exprs : LCURLYBRACE FldsOpt RCURLYBRACE
+	| NUM
+	| ID;
+FldsOpt : Flds | ;
+Flds : ID COLUMN E Seq;
+Seq : COMMA Flds | ;
+
+This is an LL(1) grammar
+A possible abstract syntax is composed of the following classes:
+
+abstract class Expression: //generic class needed in the next point of the exam
+	number line
+	number column
+	Expression(line, column):
+		this.line = line
+		this.column = column
+
+class Number extends Expression: //NUM
+	number value //number is placeholder for any number type such as int, double, ...
+	Number(line, column, value):
+		super(line, column)
+		this.value = value
+
+class Identifier extends Expression: //ID
+	string name
+	Identifier(line, column, name):
+		super(line, column)
+		this.name = name	
+
+class Structure extends Expression:	//E "." ID
+	Expression e
+	Identifier id
+	Structure(line, column, e, id):
+		super(line, column)
+		this.e = e
+		this.id = id
+
+class Assignment extends Expression: //E "=" E
+	Expression variable
+	Expression expression
+	Assignment(line, column, variable, expression):
+		this.variable = variable
+		this.expression = expression
+
+class Flds extends Expression:	//ID ":" E
+	Expression e
+	Identifier id
+	Flds(line, column, e, id):
+		super(line, column)
+		this.e = e
+		this.id = id
+	
+class FldsOpt extends Expression:
+	// if the list is empty then we have lambda
+	// otherwise we have a list containing Flds of the form ID ":" E
+	// all Flds are separated by ","
+	List<Flds> arr
+	FldsOpt(line, column, arr):
+		super(line, column)
+		this.arr = arr
+			
+class Block extends Expression: //"{" FldsOpt "}"
+	FldsOpt body
+	Block(line, column, body):
+		super(line, column)
+		this.body = body
+
+
+Ex 4
+
+abstract class Expression:
+	number line
+	number column
+	Expression(line, column):
+		this.line = line
+		this.column = column
+	abstract Types typecheck(environment);
+
+class Number extends Expression: //NUM
+	int value
+	Number(line, column, value):
+		super(line, column)
+		this.value = value
+	Types typecheck(environment):
+		return Type.NUM
+		
+class Identifier extends Expression: //ID
+	string name
+	Identifier(line, column, name):
+		super(line, column)
+		this.name = name	
+	Types typecheck(environment):
+		return environment.lookup_type(name)
+
+class Structure extends Expression:	//E "." ID
+	Expression e
+	Identifier id
+	Structure(line, column, e, id):
+		super(line, column)
+		this.e = e
+		this.id = id
+	Types typecheck(environment):
+		//typechecks the expression and then returns the id type 
+		//throws exception if not present
+		return environment.lookup_fld_type(e, id.name)
+	
+class Assignment extends Expression: //E "=" E
+	Expression variable
+	Expression expression
+	Assignment(line, column, variable, expression):
+		this.variable = variable
+		this.expression = expression
+	Types typecheck(environment):
+		Types variable_type = variable.typecheck(environment)
+		Types expression_type = expression.typecheck(environment)
+		if variable_type == expression_type:
+			return variable_type
+		throw Exception("Type mismatch, expected ${variable_type} got ${expression_type},"+
+						" on line ${super().line} column ${super().column}")
+
+class Flds extends Expression:	//ID ":" E
+	Expression e
+	Identifier id
+	Flds(line, column, e, id):
+		super(line, column)
+		this.e = e
+		this.id = id
+	Types typecheck(environment):
+		Types expression_type = e.typecheck(environment)
+		environment.bind_fld_type(id, expression_type)
+		return expression_type
+
+class FldsOpt extends Expression:
+	List<Flds> arr
+	FldsOpt(line, column, arr):
+		super(line, column)
+		this.arr = arr
+	Types typecheck(environment):
+		if len(arr) > 0:
+			foreach fld in arr:
+				fld.typecheck(environment)
+			//returns the block containing identifier: type
+			//identifier and type are bound together during the typecheck call
+			//inside the foreach
+			//get_composite_type reads one by one the identifiers in the list and create
+			//the appropriate type accordingly "{ identifier : type, ...}"
+			return environment.get_composite_type(arr)
+		return Types.NONE // type "{ }"
+
+class Block extends Expression: //"{" FldsOpt "}"
+	FldsOpt body
+	Block(line, column, body):
+		super(line, column)
+		this.body = body
+	Type typecheck(environment):
+		return body.typecheck(environment)
+
+Ex 5
+
+abstract class Expression:
+	number line
+	number column
+	Expression(line, column):
+		this.line = line
+		this.column = column
+	abstract Types typecheck(environment);
+	//[Type value] means that the function return value 
+	//can be a number (eg. 42) or a more complex type (eg {a:42, ...})
+	abstract [Type value] evaluate(environment);
+
+class Number extends Expression: //NUM
+	number value
+	Number(line, column, value):
+		super(line, column)
+		this.value = value
+	Types typecheck(environment):
+		return Type.NUM
+	[Type value] evaluate(environment):
+		return value	//value is already saved as a number
+		
+class Identifier extends Expression: //ID
+	string name
+	Identifier(line, column, name):
+		super(line, column)
+		this.name = name	
+	Types typecheck(environment):
+		return environment.lookup_type(name)
+	[Type value] evaluate(environment):
+		//throws exception if name is not bound to any value
+		return environment.lookup_value(name)
+	
+class Structure extends Expression:	//E "." ID
+	Expression e
+	Identifier id
+	Structure(line, column, e, id):
+		super(line, column)
+		this.e = e
+		this.id = id
+	Types typecheck(environment):
+		return environment.lookup_fld_type(e, id.name)
+	[Type value] evaluate(environment):
+		//returns the value of the identifier in the expression
+		return environment.lookup_fld_value(e, id.name) 	
+
+class Assignment extends Expression: //E "=" E
+	Expression variable
+	Expression expression
+	Assignment(line, column, variable, expression):
+		this.variable = variable
+		this.expression = expression
+	Types typecheck(environment):
+		Types variable_type = variable.typecheck(environment)
+		Types expression_type = expression.typecheck(environment)
+		if variable_type == expression_type:
+			return variable_type
+		throw Exception("Type mismatch, expected ${variable_type} got ${expression_type},"+
+						" on line ${super().line} column ${super().column}")
+	[Type value] evaluate(environment):
+		//since typecheck is correct, 
+		//the value of this assignment is equal to the value of the expression
+		value = expression.evaluate(environment) 
+		environment.bind(variable, value)
+		return value
+
+class Flds extends Expression:	//ID ":" E
+	Expression e
+	Identifier id
+	Flds(line, column, e, id):
+		super(line, column)
+		this.e = e
+		this.id = id
+	Types typecheck(environment):
+		Types expression_type = e.typecheck(environment)
+		environment.bind_fld_type(id, expression_type)
+		return expression_type
+	[Type value] evaluate(environment):
+		value = e.evaluate()
+		environment.bind_fld_value(id, value)
+		return value
+
+class FldsOpt extends Expression:
+	List<Flds> arr
+	FldsOpt(line, column, arr):
+		super(line, column)
+		this.arr = arr
+	Types typecheck(environment):
+		if len(arr) > 0:
+			foreach fld in arr:
+				fld.typecheck(environment)
+			return environment.get_composite_type(arr)
+		return Types.NONE // type "{ }"
+	[Type value] evaluate(environment):
+		if len(arr)>0:
+			foreach fld in arr:
+				fld.evaluate(environment)
+			//returns the block containing identifier: value
+			//identifier and value are bound together during 
+			//the evaluate call inside the foreach	
+			//get_composite_value reads one by one the identifiers in the list 
+			//and create the appropriate object accordingly "{ identifier : 42, ...}"
+			return environment.get_composite_value(arr)
+		return Types.NONE
+
+class Block extends Expression: //"{" FldsOpt "}"
+	FldsOpt body
+	Block(line, column, body):
+		super(line, column)
+		this.body = body
+	Type typecheck(environment):
+		return body.typecheck(environment)
+	[Type value] evaluate(environment):
+		return body.evaluate(environment)
+
+		
+Ex 6
+The original Trac 42 code is this:
+0 BSR 40
+1 END
+2 [f]
+3 LINK
+4 DECL 1
+5 DECL 1
+6 DECL 1
+7 LVAL −1(FP)
+8 PUSHINT 100
+9 PUSHINT  2
+10 DIV
+11 ASSINT
+12 RVALINT −1(FP)
+13 PUSHINT 10
+14 EQBOOL
+15 BRF 19
+16 LVAL −2(FP)
+17 RVALINT 2(FP)
+18 ASSINT
+19 LVAL −2(FP)
+20 RVALINT −1(FP)
+21 PUSHINT 300
+22 ADD
+23 ASSINT
+24 LVAL −3(FP)
+25 RVALINT 2(FP)
+26 RVALINT 3(FP)
+27 ADD
+28 RVALINT −2(FP)
+29 ADD
+30 ASSINT
+31 LVAL 4(FP)
+32 RVALINT −3(FP)
+33 PUSHINT 10
+34 ADD
+35 PUSHINT 23
+36 ADD
+37 ASSINT
+38 UNLINK
+39 RTS
+40 [main]
+41 LINK
+42 DECL 1
+43 PUSHINT 3
+44 PUSHINT 10
+45 BSR 2
+46 POP 2
+47 POP 1
+
+after unlinking the Trac42 code will look like this:
+0 BSR [main]
+1 END
+2 [f]
+3 LINK
+4 DECL 1
+5 DECL 1
+6 DECL 1
+7 LVAL −1(FP)
+8 PUSHINT 100
+9 PUSHINT  2
+10 DIV
+11 ASSINT
+12 RVALINT −1(FP)
+13 PUSHINT 10
+14 EQBOOL
+15 BRF 19
+16 LVAL −2(FP)
+17 RVALINT 2(FP)
+18 ASSINT
+19 LVAL −2(FP)
+20 RVALINT −1(FP)
+21 PUSHINT 300
+22 ADD
+23 ASSINT
+24 LVAL −3(FP)
+25 RVALINT 2(FP)
+26 RVALINT 3(FP)
+27 ADD
+28 RVALINT −2(FP)
+29 ADD
+30 ASSINT
+31 LVAL 4(FP)
+32 RVALINT −3(FP)
+33 PUSHINT 10
+34 ADD
+35 PUSHINT 23
+36 ADD
+37 ASSINT
+38 UNLINK
+39 RTS
+40 [main]
+41 LINK
+42 DECL 1
+43 PUSHINT 3
+44 PUSHINT 10
+45 BSR [f]
+46 POP 2
+47 POP 1
+
+we still have on line 15 a "brf 19" which does not have a label, 
+that brf might be part of an if then else condition.
+By now we can easily understand that the program starts and calls the main function
+without parameters (line 0), the program ends at line 1, right after the call to main.
+The main function just calls the f function with parameters 
+10 and 3 (f(10, 3) assuming that parameters are calculated in reverse order) 
+this is done from line 40 until line 45.
+Line 46 and 47 are respectively the removal of the 2 parameters passed to f
+and the removal of the space assigned for the return value of the function f
+
+void can be inferred as return type because no space is 
+declared before calling main.
+Also is possible to infer that the main function does not have any parameters,
+because no parameters are passed to the call.
+The main looks like this:
+void main(){
+	f(10, 3);
+}
+
+now we decompile the f function
+int f(int a, int b){
+	int x;
+	int y;
+	int z;
+	x = 100/2;
+	if(x == 10){	//will always be false
+		y = a;
+	}
+	//is just an if then, 
+	//doesn't have else because no other branches are found before line 19
+	y = x + 300;
+	z=a+b+y;
+	return z+10+23;
+}
+
+After the decompile we find this function.
+This function can be optimized by removing the unnecessary if, 
+assigning to x a constant variable instead of the division and by merging 
+the 2 numbers in the sum of the return finally we can infer that the type of f is 
+int because of the assint in line 37, that assigns z + 10 + 23 to "return" as integer
+After the optimization of the code, the following will be the final code
+
+void main(){
+	f(10, 3);
+}
+int f(int a, int b){
+	int x;
+	int y;
+	int z;
+	x = 50;
+	y = 350;
+	z = a + b + 350;
+	return z + 33;
+}
+
+with the corrisponding Trac 42 code
+
+0	BSR 3
+1	END 
+2	[main]
+3	LINK 
+4	DECL 1
+5	PUSHINT 3
+6	PUSHINT 10
+7	BSR 11
+8	POP 3
+9	UNLINK 
+10	RTS
+11	[f]
+12	LINK
+13	DECL 3
+14	LVAL -1(FP)
+15	PUSHINT 50
+16	ASSINT 
+17	LVAL -2(FP)
+18	PUSHINT 350
+19	ASSINT 
+20	LVAL -3(FP)
+21	RVALINT 2(FP)
+22	RVALINT 3(FP)
+23	ADD 
+24	PUSHINT 350
+25	ADD 
+26	ASSINT 
+27	LVAL 4(FP)
+28	RVALINT -3(FP)
+29	PUSHINT 33
+30	ADD 
+31	ASSINT 
+32	UNLINK 
+33	RTS 

@@ -1,0 +1,5 @@
+// INTERPRETATION ERROR
+void main() {
+  int x; x = f();
+}
+int f() {}

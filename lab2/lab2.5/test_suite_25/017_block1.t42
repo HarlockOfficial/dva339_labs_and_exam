@@ -1,0 +1,12 @@
+// 5
+// 4
+void main() {
+  int x;
+  x = 4;
+  {
+    int y;
+    y = 5;
+    print(y);
+  }
+  print(x);
+}

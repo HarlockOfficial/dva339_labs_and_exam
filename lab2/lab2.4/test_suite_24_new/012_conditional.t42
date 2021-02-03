@@ -1,0 +1,19 @@
+// pass
+
+int main(){
+	int x;
+	int y;
+	int z;
+	x = 111;
+	y = 222;
+	z = 333;
+	if(x <= y - 80){
+		if(56 > z || z >= y){
+			while(x < y){
+				print(x);
+				x = x + 10;
+			}
+		}
+	}
+  return 1;
+}

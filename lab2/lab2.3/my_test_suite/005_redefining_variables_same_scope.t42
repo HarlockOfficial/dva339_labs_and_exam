@@ -1,0 +1,9 @@
+//0
+//False
+
+void main(){
+    int x;
+    print(x);
+    bool x;
+    print(x);
+}

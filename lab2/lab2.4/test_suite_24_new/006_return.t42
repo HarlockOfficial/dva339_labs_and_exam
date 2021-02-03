@@ -1,0 +1,3 @@
+// pass
+void main(){print(true);print(true);return;print(false);}
+

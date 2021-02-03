@@ -1,0 +1,27 @@
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.deps.json
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.runtimeconfig.json
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.runtimeconfig.dev.json
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.dll
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.pdb
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/QUT.ShiftReduceParser.dll
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.csprojAssemblyReference.cache
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.csproj.CoreCompileInputs.cache
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.AssemblyInfoInputs.cache
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.AssemblyInfo.cs
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.csproj.CopyComplete
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.dll
+C:/Users/dhn03/Desktop/New folder/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.pdb
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.csprojAssemblyReference.cache
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.AssemblyInfoInputs.cache
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.AssemblyInfo.cs
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.csproj.CoreCompileInputs.cache
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.dll
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.pdb
+/Users/dhn03/Desktop/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.deps.json
+/Users/dhn03/Desktop/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.runtimeconfig.json
+/Users/dhn03/Desktop/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.runtimeconfig.dev.json
+/Users/dhn03/Desktop/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.dll
+/Users/dhn03/Desktop/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/LectureLanguage.pdb
+/Users/dhn03/Desktop/LectureLanguage/Parser/bin/Debug/netcoreapp2.1/QUT.ShiftReduceParser.dll
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.csproj.CopyComplete
+/Users/dhn03/Desktop/LectureLanguage/Parser/obj/Debug/netcoreapp2.1/LectureLanguage.genruntimeconfig.cache

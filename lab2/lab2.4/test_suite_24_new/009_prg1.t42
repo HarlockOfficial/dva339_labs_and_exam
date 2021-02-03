@@ -1,0 +1,28 @@
+// pass
+
+int main()
+            {
+            int y;
+            y = -5;
+            while(y <= 10)
+            {
+                print(ree(y));
+                y = y  +1;
+            }
+            return 1;
+            }
+
+
+            int ree(int x)
+            {
+                return abs(x);
+            }
+
+            int abs(int x)
+            {
+            if(x < 0)
+                return -x;
+            else
+                return x;
+            }
+

@@ -1,0 +1,6 @@
+//fail 4 11
+
+int main(){
+    print(undefined());
+    return 0;
+}

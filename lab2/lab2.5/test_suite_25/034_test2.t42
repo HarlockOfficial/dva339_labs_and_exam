@@ -1,0 +1,7 @@
+// 10 10
+int abs(int val) {
+    if (val < 0) return -val; return val;
+}
+void main() {
+    print(abs(-10), abs(10));
+}

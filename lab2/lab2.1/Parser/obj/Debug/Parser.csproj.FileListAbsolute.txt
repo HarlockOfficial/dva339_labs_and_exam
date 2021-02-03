@@ -1,0 +1,8 @@
+/Users/dhn03/Projects/LectureLanguage/Parser/bin/Debug/Parser.exe
+/Users/dhn03/Projects/LectureLanguage/Parser/bin/Debug/Parser.pdb
+/Users/dhn03/Projects/LectureLanguage/Parser/bin/Debug/QUT.ShiftReduceParser.dll
+/Users/dhn03/Projects/LectureLanguage/Parser/obj/Debug/Parser.csprojAssemblyReference.cache
+/Users/dhn03/Projects/LectureLanguage/Parser/obj/Debug/Parser.csproj.CoreCompileInputs.cache
+/Users/dhn03/Projects/LectureLanguage/Parser/obj/Debug/Parser.csproj.CopyComplete
+/Users/dhn03/Projects/LectureLanguage/Parser/obj/Debug/Parser.exe
+/Users/dhn03/Projects/LectureLanguage/Parser/obj/Debug/Parser.pdb

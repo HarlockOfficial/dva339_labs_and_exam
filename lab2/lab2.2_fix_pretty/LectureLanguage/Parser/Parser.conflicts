@@ -1,0 +1,180 @@
+// Parser Conflict Information for grammar file ".\Parser.y - 11/24/2020 9:59:12 AM"
+
+Shift/Reduce conflict on symbol "","", parser will shift
+ Reduce 5:	E1 -> E1, ",", E1
+ Shift "","":	State-11 -> State-10
+  Items for From-state State 11
+    5 E1: E1 "," E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 10
+    5 E1: E1 "," . E1 
+
+Shift/Reduce conflict on symbol ""+"", parser will shift
+ Reduce 5:	E1 -> E1, ",", E1
+ Shift ""+"":	State-11 -> State-14
+  Items for From-state State 11
+    5 E1: E1 "," E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 14
+    11 Op: "+" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""-"", parser will shift
+ Reduce 5:	E1 -> E1, ",", E1
+ Shift ""-"":	State-11 -> State-15
+  Items for From-state State 11
+    5 E1: E1 "," E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 15
+    12 Op: "-" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""*"", parser will shift
+ Reduce 5:	E1 -> E1, ",", E1
+ Shift ""*"":	State-11 -> State-16
+  Items for From-state State 11
+    5 E1: E1 "," E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 16
+    13 Op: "*" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""/"", parser will shift
+ Reduce 5:	E1 -> E1, ",", E1
+ Shift ""/"":	State-11 -> State-17
+  Items for From-state State 11
+    5 E1: E1 "," E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 17
+    14 Op: "/" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol "","", parser will shift
+ Reduce 6:	E1 -> E1, Op, E1
+ Shift "","":	State-13 -> State-10
+  Items for From-state State 13
+    6 E1: E1 Op E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 10
+    5 E1: E1 "," . E1 
+
+Shift/Reduce conflict on symbol ""+"", parser will shift
+ Reduce 6:	E1 -> E1, Op, E1
+ Shift ""+"":	State-13 -> State-14
+  Items for From-state State 13
+    6 E1: E1 Op E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 14
+    11 Op: "+" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""-"", parser will shift
+ Reduce 6:	E1 -> E1, Op, E1
+ Shift ""-"":	State-13 -> State-15
+  Items for From-state State 13
+    6 E1: E1 Op E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 15
+    12 Op: "-" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""*"", parser will shift
+ Reduce 6:	E1 -> E1, Op, E1
+ Shift ""*"":	State-13 -> State-16
+  Items for From-state State 13
+    6 E1: E1 Op E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 16
+    13 Op: "*" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""/"", parser will shift
+ Reduce 6:	E1 -> E1, Op, E1
+ Shift ""/"":	State-13 -> State-17
+  Items for From-state State 13
+    6 E1: E1 Op E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 17
+    14 Op: "/" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol "","", parser will shift
+ Reduce 7:	E1 -> ID, E1
+ Shift "","":	State-19 -> State-10
+  Items for From-state State 19
+    7 E1: ID E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 10
+    5 E1: E1 "," . E1 
+
+Shift/Reduce conflict on symbol ""+"", parser will shift
+ Reduce 7:	E1 -> ID, E1
+ Shift ""+"":	State-19 -> State-14
+  Items for From-state State 19
+    7 E1: ID E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 14
+    11 Op: "+" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""-"", parser will shift
+ Reduce 7:	E1 -> ID, E1
+ Shift ""-"":	State-19 -> State-15
+  Items for From-state State 19
+    7 E1: ID E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 15
+    12 Op: "-" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""*"", parser will shift
+ Reduce 7:	E1 -> ID, E1
+ Shift ""*"":	State-19 -> State-16
+  Items for From-state State 19
+    7 E1: ID E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 16
+    13 Op: "*" .
+	-lookahead: ID, "(", NUM
+
+Shift/Reduce conflict on symbol ""/"", parser will shift
+ Reduce 7:	E1 -> ID, E1
+ Shift ""/"":	State-19 -> State-17
+  Items for From-state State 19
+    7 E1: ID E1 .
+	-lookahead: ",", "+", "-", "*", "/", EOF, "in", ")"
+    5 E1: E1 . "," E1 
+    6 E1: E1 . Op E1 
+  Items for Next-state State 17
+    14 Op: "/" .
+	-lookahead: ID, "(", NUM
+
+// End conflict information for parser

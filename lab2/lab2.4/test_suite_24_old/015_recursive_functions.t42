@@ -1,0 +1,49 @@
+// pass
+
+int main(){
+	int sum;
+	sum = sum(10);
+	print(sum);
+	bool even;
+	even = even(101);
+	print(even);
+	printrec(4);
+	return 1;
+}
+
+int sum(int n){
+	if(n>1){
+		return n + sum(n-1);
+	}else{
+		return 1;
+	}
+}
+
+bool even(int n){
+	return pingpongleft(n);
+}
+
+bool pingpongleft(int n){
+	if(n > 1){
+		return pingpongright(n-1);
+	}else{
+		return false;
+	}
+}
+
+bool pingpongright(int n){
+	if(n > 1){
+		return pingpongleft(n-1);
+	}else{
+		return true;
+	}
+}
+
+void printrec(int n){
+	if(n > 1){
+		print(n);
+		printrec(n-1);
+	}else{
+		print(1);
+	}
+}

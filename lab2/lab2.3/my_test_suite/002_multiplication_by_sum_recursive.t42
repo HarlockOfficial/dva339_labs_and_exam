@@ -1,0 +1,39 @@
+//0 0
+//1 1
+//2 4
+//3 9
+//4 16
+//5 25
+//6 36
+//7 49
+//8 64
+//9 81
+//10 100
+//11 121
+//12 144
+//13 169
+//14 196
+//15 225
+
+int sum_value_times(int n, int times){
+    if(times<=1){
+        return n;
+    }
+    return n+sum_value_times(n, times-1);
+}
+
+int square(int n){
+    return sum_value_times(n, n);
+}
+
+int main(){
+    int n;
+    int end;
+    end = 225;
+    n = 0;
+    while(square(n)<=end){
+        print(n, square(n));
+        n = n + 1;
+    }
+    return 0;
+}

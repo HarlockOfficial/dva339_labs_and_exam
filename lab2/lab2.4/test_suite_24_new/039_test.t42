@@ -1,0 +1,3 @@
+// pass
+void main() {  bool x; int v;  x = false;  if(x) {   int y;} else {int foo;}  v = 2 + 3;  }
+

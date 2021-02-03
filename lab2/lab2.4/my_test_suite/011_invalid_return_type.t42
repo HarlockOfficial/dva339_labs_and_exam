@@ -1,0 +1,30 @@
+//fail 28 5
+
+int max(int a, int b){
+    if(a>b){
+        return a;
+    }else{
+        return b;
+    }
+}
+
+int main(){
+    int n1;
+    int n2;
+    int n3;
+    bool return_val;
+    int max1;
+    int max2;
+    n1 = 5;
+    n2 = 4;
+    n3 = 89;
+    max1 = max(n1, n2);
+    max2 = max(max1, n3);
+    if(max1==max2){
+        return_val = true;
+    }else{
+        print(max2);
+    }
+    return return_val;
+    return 0;
+}

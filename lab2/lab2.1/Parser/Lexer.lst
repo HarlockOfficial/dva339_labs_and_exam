@@ -1,0 +1,70 @@
+
+// ==========================================================================
+//  GPLEX error listing for lex source file <Lexer.x>
+// ==========================================================================
+//  Version:  1.2.2
+//  Machine:  C02ZX10FMD6Q
+//  DateTime: 11/23/2020 12:16:17 PM
+//  UserName: dhn03
+// ==========================================================================
+
+
+%namespace Parser
+%using QUT.Gppg;
+%option out:Generated/Lexer.cs
+
+alpha [a-zA-Z]
+digit [0-9]
+alphanum {alpha}|{digit}
+
+%%
+
+" "|\r|\n  { }
+//.*$          { }
+
+"let" { return (int) Tokens.LET; }
+"in"  { return (int) Tokens.IN; }
+","   { return (int) Tokens.COMMA; }
+"("   { return (int) Tokens.LPAR; }
+")"   { return (int) Tokens.RPAR; }
+"+"   { return (int) Tokens.ADD; }
+"-"   { return (int) Tokens.SUB; }
+"*"   { return (int) Tokens.MUL; }
+"/"   { return (int) Tokens.DIV; }
+"="   { return (int) Tokens.ASN; }
+
+{digit}* {
+    yylval.value = yytext;
+    return (int) Tokens.NUM;
+}
+
+{alpha}{alphanum}* {
+    yylval.value = yytext;
+    return (int) Tokens.ID;
+}
+
+. {
+    yylval.value = yytext;
+//--------------^-^
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+    return (int) Tokens.ERR;
+//--------^-----^
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+}
+
+%{
+yylloc = new LexLocation(tokLin,tokCol,
+                          tokELin,tokECol);
+%}
+
+%%
+
+override public void yyerror(string msg, object[] args) {
+Console.WriteLine("{0} on line {1} column {2}.", 
+			 msg, yylloc.StartLine, yylloc.StartColumn);
+}// ==========================================================================
+

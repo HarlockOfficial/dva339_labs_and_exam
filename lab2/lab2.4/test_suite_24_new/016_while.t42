@@ -1,0 +1,20 @@
+// pass
+
+int main(){
+	int i;
+	int j;
+	int size;
+	i = 0;
+	j = 0;
+	size = 4;
+	while(i < size){
+		j = 0;
+		while(j < size){
+			print(i, j);
+			j = j + 1;
+		}
+		i = i + 1;
+	}
+	
+	return 1;
+}

@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{01448F73-6F22-4C65-A7F4-65C816F97ED8}|Default">
+  <MonoDevelop.Ide.ItemProperties.LectureLanguage PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Generator/Generator.cs">
+    <Files>
+      <File FileName="Generator/Lift.cs" Line="196" Column="14" />
+      <File FileName="AbstractSyntax/AbstractSyntax.cs" Line="74" Column="37" />
+      <File FileName="Prettyprinter/PrettyAbstractSyntax.cs" Line="43" Column="50" />
+      <File FileName="AbstractSyntax/Prepass.cs" Line="1" Column="1" />
+      <File FileName="Generator/FreeVariables.cs" Line="40" Column="50" />
+      <File FileName="Prettyprinter/PrettyBuilder.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="14" Column="113" />
+      <File FileName="General.cs" Line="1" Column="1" />
+      <File FileName="Generator/Trac42AbstractSyntax.cs" Line="21" Column="1" />
+      <File FileName="Typechecker/Typechecker.cs" Line="130" Column="55" />
+      <File FileName="Generator/Generator.cs" Line="123" Column="1" />
+      <File FileName="Evaluator/Evaluator.cs" Line="199" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LectureLanguage" expanded="True">
+            <Node name="LectureLanguage" expanded="True">
+              <Node name="AbstractSyntax" expanded="True" />
+              <Node name="Evaluator" expanded="True" />
+              <Node name="Generator" expanded="True">
+                <Node name="Generator.cs" selected="True" />
+              </Node>
+              <Node name="Typechecker" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

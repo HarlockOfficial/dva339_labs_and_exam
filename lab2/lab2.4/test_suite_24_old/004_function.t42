@@ -1,0 +1,6 @@
+// pass
+void main(){print(get4());}
+int get4(){return get2()+get2();}
+int get2(){return get1()+get1();}
+int get1(){return 1;}
+

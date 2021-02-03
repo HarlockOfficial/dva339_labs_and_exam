@@ -1,0 +1,2 @@
+// fail 2 54
+void main() { bool x; x = foo(); } bool foo(){return 3;}

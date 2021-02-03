@@ -1,0 +1,10 @@
+// 42
+// 55
+void main() {
+  f();
+  print(55);
+}
+
+void f() {
+  print(42);
+}

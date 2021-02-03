@@ -1,0 +1,2646 @@
+Grammar:
+
+Rule 0     S' -> Program
+Rule 1     Program -> Decls
+Rule 2     Decls -> <empty>
+Rule 3     Decls -> Decl Decls
+Rule 4     Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+Rule 5     Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+Rule 6     FormalList -> <empty>
+Rule 7     FormalList -> Type IDENTIFIER Identifiers
+Rule 8     Identifiers -> <empty>
+Rule 9     Identifiers -> COMMA Type IDENTIFIER Identifiers
+Rule 10    Type -> BOOL
+Rule 11    Type -> INT
+Rule 12    Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+Rule 13    Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+Rule 14    Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+Rule 15    Stmt -> RETURN SEMICOLON
+Rule 16    Stmt -> RETURN Expr SEMICOLON
+Rule 17    Stmt -> Type IDENTIFIER SEMICOLON
+Rule 18    Stmt -> Expr SEMICOLON
+Rule 19    Stmt -> <empty>
+Rule 20    Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+Rule 21    Stmts -> <empty>
+Rule 22    Stmts -> Stmts Stmt
+Rule 23    Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+Rule 24    Expr -> IDENTIFIER
+Rule 25    Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+Rule 26    Expr -> MINUS Expr  [precedence=nonassoc, level=8]
+Rule 27    Expr -> NOT Expr  [precedence=nonassoc, level=8]
+Rule 28    Expr -> Expr GREATER Expr  [precedence=left, level=5]
+Rule 29    Expr -> Expr LOWER Expr  [precedence=left, level=5]
+Rule 30    Expr -> Expr GREATEREQUAL Expr  [precedence=left, level=5]
+Rule 31    Expr -> Expr LOWEREQUAL Expr  [precedence=left, level=5]
+Rule 32    Expr -> Expr DIFFERENT Expr  [precedence=left, level=4]
+Rule 33    Expr -> Expr AND Expr  [precedence=left, level=3]
+Rule 34    Expr -> Expr OR Expr  [precedence=left, level=2]
+Rule 35    Expr -> Expr EQUALS Expr  [precedence=left, level=4]
+Rule 36    Expr -> Expr DIVIDE Expr  [precedence=left, level=7]
+Rule 37    Expr -> Expr MULTIPLY Expr  [precedence=left, level=7]
+Rule 38    Expr -> Expr MINUS Expr  [precedence=left, level=6]
+Rule 39    Expr -> Expr PLUS Expr  [precedence=left, level=6]
+Rule 40    Expr -> IDENTIFIER ASSIGN Expr  [precedence=right, level=1]
+Rule 41    Expr -> FALSE
+Rule 42    Expr -> TRUE
+Rule 43    Expr -> NUMBER
+Rule 44    ExprList -> <empty>
+Rule 45    ExprList -> Expr Expressions
+Rule 46    Expressions -> <empty>
+Rule 47    Expressions -> COMMA Expr Expressions
+
+Terminals, with rules where they appear:
+
+AND                  : 33
+ASSIGN               : 40
+BOOL                 : 10
+COMMA                : 9 47
+DIFFERENT            : 32
+DIVIDE               : 36
+ELSE                 : 13
+EQUALS               : 35
+FALSE                : 41
+GREATER              : 28
+GREATEREQUAL         : 30
+IDENTIFIER           : 4 5 7 9 17 24 25 40
+IF                   : 13 14
+INT                  : 11
+LEFTCURLYBRACKET     : 4 5 20
+LEFTROUNDPARENTHESES : 4 5 12 13 14 23 25
+LOWER                : 29
+LOWEREQUAL           : 31
+MINUS                : 26 38
+MULTIPLY             : 37
+NOT                  : 27
+NUMBER               : 43
+OR                   : 34
+PLUS                 : 39
+RETURN               : 15 16
+RIGHTCURLYBRACKET    : 4 5 20
+RIGHTROUNDPARENTHESES : 4 5 12 13 14 23 25
+SEMICOLON            : 15 16 17 18
+TRUE                 : 42
+VOID                 : 4
+WHILE                : 12
+error                : 
+
+Nonterminals, with rules where they appear:
+
+Decl                 : 3
+Decls                : 1 3
+Expr                 : 12 13 14 16 18 23 26 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 45 47
+ExprList             : 25
+Expressions          : 45 47
+FormalList           : 4 5
+Identifiers          : 7 9
+Program              : 0
+Stmt                 : 12 13 13 14 22
+Stmts                : 4 5 20 22
+Type                 : 5 7 9 17
+
+
+state 0
+
+    (0) S' -> . Program
+    (1) Program -> . Decls
+    (2) Decls -> .
+    (3) Decls -> . Decl Decls
+    (4) Decl -> . VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (5) Decl -> . Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    $end            reduce using rule 2 (Decls -> .)
+    VOID            shift and go to state 4
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+
+    Program                        shift and go to state 1
+    Decls                          shift and go to state 2
+    Decl                           shift and go to state 3
+    Type                           shift and go to state 5
+
+state 1
+
+    (0) S' -> Program .
+
+
+state 2
+
+    (1) Program -> Decls .
+    $end            reduce using rule 1 (Program -> Decls .)
+
+
+state 3
+
+    (3) Decls -> Decl . Decls
+    (2) Decls -> .
+    (3) Decls -> . Decl Decls
+    (4) Decl -> . VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (5) Decl -> . Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    $end            reduce using rule 2 (Decls -> .)
+    VOID            shift and go to state 4
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+
+    Decl                           shift and go to state 3
+    Decls                          shift and go to state 8
+    Type                           shift and go to state 5
+
+state 4
+
+    (4) Decl -> VOID . IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    IDENTIFIER      shift and go to state 9
+
+
+state 5
+
+    (5) Decl -> Type . IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    IDENTIFIER      shift and go to state 10
+
+
+state 6
+
+    (10) Type -> BOOL .
+    IDENTIFIER      reduce using rule 10 (Type -> BOOL .)
+
+
+state 7
+
+    (11) Type -> INT .
+    IDENTIFIER      reduce using rule 11 (Type -> INT .)
+
+
+state 8
+
+    (3) Decls -> Decl Decls .
+    $end            reduce using rule 3 (Decls -> Decl Decls .)
+
+
+state 9
+
+    (4) Decl -> VOID IDENTIFIER . LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    LEFTROUNDPARENTHESES shift and go to state 11
+
+
+state 10
+
+    (5) Decl -> Type IDENTIFIER . LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    LEFTROUNDPARENTHESES shift and go to state 12
+
+
+state 11
+
+    (4) Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES . FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (6) FormalList -> .
+    (7) FormalList -> . Type IDENTIFIER Identifiers
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    RIGHTROUNDPARENTHESES reduce using rule 6 (FormalList -> .)
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+
+    FormalList                     shift and go to state 13
+    Type                           shift and go to state 14
+
+state 12
+
+    (5) Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES . FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (6) FormalList -> .
+    (7) FormalList -> . Type IDENTIFIER Identifiers
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    RIGHTROUNDPARENTHESES reduce using rule 6 (FormalList -> .)
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+
+    Type                           shift and go to state 14
+    FormalList                     shift and go to state 15
+
+state 13
+
+    (4) Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList . RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    RIGHTROUNDPARENTHESES shift and go to state 16
+
+
+state 14
+
+    (7) FormalList -> Type . IDENTIFIER Identifiers
+    IDENTIFIER      shift and go to state 17
+
+
+state 15
+
+    (5) Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList . RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    RIGHTROUNDPARENTHESES shift and go to state 18
+
+
+state 16
+
+    (4) Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    LEFTCURLYBRACKET shift and go to state 19
+
+
+state 17
+
+    (7) FormalList -> Type IDENTIFIER . Identifiers
+    (8) Identifiers -> .
+    (9) Identifiers -> . COMMA Type IDENTIFIER Identifiers
+    RIGHTROUNDPARENTHESES reduce using rule 8 (Identifiers -> .)
+    COMMA           shift and go to state 21
+
+    Identifiers                    shift and go to state 20
+
+state 18
+
+    (5) Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    LEFTCURLYBRACKET shift and go to state 22
+
+
+state 19
+
+    (4) Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET . Stmts RIGHTCURLYBRACKET
+    (21) Stmts -> .
+    (22) Stmts -> . Stmts Stmt
+    RIGHTCURLYBRACKET reduce using rule 21 (Stmts -> .)
+    WHILE           reduce using rule 21 (Stmts -> .)
+    IF              reduce using rule 21 (Stmts -> .)
+    RETURN          reduce using rule 21 (Stmts -> .)
+    LEFTCURLYBRACKET reduce using rule 21 (Stmts -> .)
+    BOOL            reduce using rule 21 (Stmts -> .)
+    INT             reduce using rule 21 (Stmts -> .)
+    LEFTROUNDPARENTHESES reduce using rule 21 (Stmts -> .)
+    IDENTIFIER      reduce using rule 21 (Stmts -> .)
+    MINUS           reduce using rule 21 (Stmts -> .)
+    NOT             reduce using rule 21 (Stmts -> .)
+    FALSE           reduce using rule 21 (Stmts -> .)
+    TRUE            reduce using rule 21 (Stmts -> .)
+    NUMBER          reduce using rule 21 (Stmts -> .)
+
+    Stmts                          shift and go to state 23
+
+state 20
+
+    (7) FormalList -> Type IDENTIFIER Identifiers .
+    RIGHTROUNDPARENTHESES reduce using rule 7 (FormalList -> Type IDENTIFIER Identifiers .)
+
+
+state 21
+
+    (9) Identifiers -> COMMA . Type IDENTIFIER Identifiers
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+
+    Type                           shift and go to state 24
+
+state 22
+
+    (5) Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET . Stmts RIGHTCURLYBRACKET
+    (21) Stmts -> .
+    (22) Stmts -> . Stmts Stmt
+    RIGHTCURLYBRACKET reduce using rule 21 (Stmts -> .)
+    WHILE           reduce using rule 21 (Stmts -> .)
+    IF              reduce using rule 21 (Stmts -> .)
+    RETURN          reduce using rule 21 (Stmts -> .)
+    LEFTCURLYBRACKET reduce using rule 21 (Stmts -> .)
+    BOOL            reduce using rule 21 (Stmts -> .)
+    INT             reduce using rule 21 (Stmts -> .)
+    LEFTROUNDPARENTHESES reduce using rule 21 (Stmts -> .)
+    IDENTIFIER      reduce using rule 21 (Stmts -> .)
+    MINUS           reduce using rule 21 (Stmts -> .)
+    NOT             reduce using rule 21 (Stmts -> .)
+    FALSE           reduce using rule 21 (Stmts -> .)
+    TRUE            reduce using rule 21 (Stmts -> .)
+    NUMBER          reduce using rule 21 (Stmts -> .)
+
+    Stmts                          shift and go to state 25
+
+state 23
+
+    (4) Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts . RIGHTCURLYBRACKET
+    (22) Stmts -> Stmts . Stmt
+    (12) Stmt -> . WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (13) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (15) Stmt -> . RETURN SEMICOLON
+    (16) Stmt -> . RETURN Expr SEMICOLON
+    (17) Stmt -> . Type IDENTIFIER SEMICOLON
+    (18) Stmt -> . Expr SEMICOLON
+    (19) Stmt -> .
+    (20) Stmt -> . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+  ! shift/reduce conflict for RIGHTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for LEFTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for LEFTROUNDPARENTHESES resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RIGHTCURLYBRACKET shift and go to state 29
+    WHILE           shift and go to state 31
+    IF              shift and go to state 33
+    RETURN          shift and go to state 34
+    LEFTCURLYBRACKET shift and go to state 28
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Stmt                           shift and go to state 30
+    Expr                           shift and go to state 32
+    Type                           shift and go to state 35
+
+state 24
+
+    (9) Identifiers -> COMMA Type . IDENTIFIER Identifiers
+    IDENTIFIER      shift and go to state 41
+
+
+state 25
+
+    (5) Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts . RIGHTCURLYBRACKET
+    (22) Stmts -> Stmts . Stmt
+    (12) Stmt -> . WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (13) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (15) Stmt -> . RETURN SEMICOLON
+    (16) Stmt -> . RETURN Expr SEMICOLON
+    (17) Stmt -> . Type IDENTIFIER SEMICOLON
+    (18) Stmt -> . Expr SEMICOLON
+    (19) Stmt -> .
+    (20) Stmt -> . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+  ! shift/reduce conflict for RIGHTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for LEFTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for LEFTROUNDPARENTHESES resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RIGHTCURLYBRACKET shift and go to state 42
+    WHILE           shift and go to state 31
+    IF              shift and go to state 33
+    RETURN          shift and go to state 34
+    LEFTCURLYBRACKET shift and go to state 28
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Type                           shift and go to state 35
+    Stmt                           shift and go to state 30
+    Expr                           shift and go to state 32
+
+state 26
+
+    (24) Expr -> IDENTIFIER .
+    (25) Expr -> IDENTIFIER . LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (40) Expr -> IDENTIFIER . ASSIGN Expr
+    SEMICOLON       reduce using rule 24 (Expr -> IDENTIFIER .)
+    GREATER         reduce using rule 24 (Expr -> IDENTIFIER .)
+    LOWER           reduce using rule 24 (Expr -> IDENTIFIER .)
+    GREATEREQUAL    reduce using rule 24 (Expr -> IDENTIFIER .)
+    LOWEREQUAL      reduce using rule 24 (Expr -> IDENTIFIER .)
+    DIFFERENT       reduce using rule 24 (Expr -> IDENTIFIER .)
+    AND             reduce using rule 24 (Expr -> IDENTIFIER .)
+    OR              reduce using rule 24 (Expr -> IDENTIFIER .)
+    EQUALS          reduce using rule 24 (Expr -> IDENTIFIER .)
+    DIVIDE          reduce using rule 24 (Expr -> IDENTIFIER .)
+    MULTIPLY        reduce using rule 24 (Expr -> IDENTIFIER .)
+    MINUS           reduce using rule 24 (Expr -> IDENTIFIER .)
+    PLUS            reduce using rule 24 (Expr -> IDENTIFIER .)
+    RIGHTROUNDPARENTHESES reduce using rule 24 (Expr -> IDENTIFIER .)
+    COMMA           reduce using rule 24 (Expr -> IDENTIFIER .)
+    LEFTROUNDPARENTHESES shift and go to state 43
+    ASSIGN          shift and go to state 44
+
+
+state 27
+
+    (23) Expr -> LEFTROUNDPARENTHESES . Expr RIGHTROUNDPARENTHESES
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 45
+
+state 28
+
+    (20) Stmt -> LEFTCURLYBRACKET . Stmts RIGHTCURLYBRACKET
+    (21) Stmts -> .
+    (22) Stmts -> . Stmts Stmt
+    RIGHTCURLYBRACKET reduce using rule 21 (Stmts -> .)
+    WHILE           reduce using rule 21 (Stmts -> .)
+    IF              reduce using rule 21 (Stmts -> .)
+    RETURN          reduce using rule 21 (Stmts -> .)
+    LEFTCURLYBRACKET reduce using rule 21 (Stmts -> .)
+    BOOL            reduce using rule 21 (Stmts -> .)
+    INT             reduce using rule 21 (Stmts -> .)
+    LEFTROUNDPARENTHESES reduce using rule 21 (Stmts -> .)
+    IDENTIFIER      reduce using rule 21 (Stmts -> .)
+    MINUS           reduce using rule 21 (Stmts -> .)
+    NOT             reduce using rule 21 (Stmts -> .)
+    FALSE           reduce using rule 21 (Stmts -> .)
+    TRUE            reduce using rule 21 (Stmts -> .)
+    NUMBER          reduce using rule 21 (Stmts -> .)
+
+    Stmts                          shift and go to state 46
+
+state 29
+
+    (4) Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .
+    VOID            reduce using rule 4 (Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    BOOL            reduce using rule 4 (Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    INT             reduce using rule 4 (Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    $end            reduce using rule 4 (Decl -> VOID IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+
+
+state 30
+
+    (22) Stmts -> Stmts Stmt .
+    RIGHTCURLYBRACKET reduce using rule 22 (Stmts -> Stmts Stmt .)
+    WHILE           reduce using rule 22 (Stmts -> Stmts Stmt .)
+    IF              reduce using rule 22 (Stmts -> Stmts Stmt .)
+    RETURN          reduce using rule 22 (Stmts -> Stmts Stmt .)
+    LEFTCURLYBRACKET reduce using rule 22 (Stmts -> Stmts Stmt .)
+    BOOL            reduce using rule 22 (Stmts -> Stmts Stmt .)
+    INT             reduce using rule 22 (Stmts -> Stmts Stmt .)
+    LEFTROUNDPARENTHESES reduce using rule 22 (Stmts -> Stmts Stmt .)
+    IDENTIFIER      reduce using rule 22 (Stmts -> Stmts Stmt .)
+    MINUS           reduce using rule 22 (Stmts -> Stmts Stmt .)
+    NOT             reduce using rule 22 (Stmts -> Stmts Stmt .)
+    FALSE           reduce using rule 22 (Stmts -> Stmts Stmt .)
+    TRUE            reduce using rule 22 (Stmts -> Stmts Stmt .)
+    NUMBER          reduce using rule 22 (Stmts -> Stmts Stmt .)
+
+
+state 31
+
+    (12) Stmt -> WHILE . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    LEFTROUNDPARENTHESES shift and go to state 47
+
+
+state 32
+
+    (18) Stmt -> Expr . SEMICOLON
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       shift and go to state 48
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 33
+
+    (13) Stmt -> IF . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> IF . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    LEFTROUNDPARENTHESES shift and go to state 61
+
+
+state 34
+
+    (15) Stmt -> RETURN . SEMICOLON
+    (16) Stmt -> RETURN . Expr SEMICOLON
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    SEMICOLON       shift and go to state 62
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 63
+
+state 35
+
+    (17) Stmt -> Type . IDENTIFIER SEMICOLON
+    IDENTIFIER      shift and go to state 64
+
+
+state 36
+
+    (26) Expr -> MINUS . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 65
+
+state 37
+
+    (27) Expr -> NOT . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 66
+
+state 38
+
+    (41) Expr -> FALSE .
+    SEMICOLON       reduce using rule 41 (Expr -> FALSE .)
+    GREATER         reduce using rule 41 (Expr -> FALSE .)
+    LOWER           reduce using rule 41 (Expr -> FALSE .)
+    GREATEREQUAL    reduce using rule 41 (Expr -> FALSE .)
+    LOWEREQUAL      reduce using rule 41 (Expr -> FALSE .)
+    DIFFERENT       reduce using rule 41 (Expr -> FALSE .)
+    AND             reduce using rule 41 (Expr -> FALSE .)
+    OR              reduce using rule 41 (Expr -> FALSE .)
+    EQUALS          reduce using rule 41 (Expr -> FALSE .)
+    DIVIDE          reduce using rule 41 (Expr -> FALSE .)
+    MULTIPLY        reduce using rule 41 (Expr -> FALSE .)
+    MINUS           reduce using rule 41 (Expr -> FALSE .)
+    PLUS            reduce using rule 41 (Expr -> FALSE .)
+    RIGHTROUNDPARENTHESES reduce using rule 41 (Expr -> FALSE .)
+    COMMA           reduce using rule 41 (Expr -> FALSE .)
+
+
+state 39
+
+    (42) Expr -> TRUE .
+    SEMICOLON       reduce using rule 42 (Expr -> TRUE .)
+    GREATER         reduce using rule 42 (Expr -> TRUE .)
+    LOWER           reduce using rule 42 (Expr -> TRUE .)
+    GREATEREQUAL    reduce using rule 42 (Expr -> TRUE .)
+    LOWEREQUAL      reduce using rule 42 (Expr -> TRUE .)
+    DIFFERENT       reduce using rule 42 (Expr -> TRUE .)
+    AND             reduce using rule 42 (Expr -> TRUE .)
+    OR              reduce using rule 42 (Expr -> TRUE .)
+    EQUALS          reduce using rule 42 (Expr -> TRUE .)
+    DIVIDE          reduce using rule 42 (Expr -> TRUE .)
+    MULTIPLY        reduce using rule 42 (Expr -> TRUE .)
+    MINUS           reduce using rule 42 (Expr -> TRUE .)
+    PLUS            reduce using rule 42 (Expr -> TRUE .)
+    RIGHTROUNDPARENTHESES reduce using rule 42 (Expr -> TRUE .)
+    COMMA           reduce using rule 42 (Expr -> TRUE .)
+
+
+state 40
+
+    (43) Expr -> NUMBER .
+    SEMICOLON       reduce using rule 43 (Expr -> NUMBER .)
+    GREATER         reduce using rule 43 (Expr -> NUMBER .)
+    LOWER           reduce using rule 43 (Expr -> NUMBER .)
+    GREATEREQUAL    reduce using rule 43 (Expr -> NUMBER .)
+    LOWEREQUAL      reduce using rule 43 (Expr -> NUMBER .)
+    DIFFERENT       reduce using rule 43 (Expr -> NUMBER .)
+    AND             reduce using rule 43 (Expr -> NUMBER .)
+    OR              reduce using rule 43 (Expr -> NUMBER .)
+    EQUALS          reduce using rule 43 (Expr -> NUMBER .)
+    DIVIDE          reduce using rule 43 (Expr -> NUMBER .)
+    MULTIPLY        reduce using rule 43 (Expr -> NUMBER .)
+    MINUS           reduce using rule 43 (Expr -> NUMBER .)
+    PLUS            reduce using rule 43 (Expr -> NUMBER .)
+    RIGHTROUNDPARENTHESES reduce using rule 43 (Expr -> NUMBER .)
+    COMMA           reduce using rule 43 (Expr -> NUMBER .)
+
+
+state 41
+
+    (9) Identifiers -> COMMA Type IDENTIFIER . Identifiers
+    (8) Identifiers -> .
+    (9) Identifiers -> . COMMA Type IDENTIFIER Identifiers
+    RIGHTROUNDPARENTHESES reduce using rule 8 (Identifiers -> .)
+    COMMA           shift and go to state 21
+
+    Identifiers                    shift and go to state 67
+
+state 42
+
+    (5) Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .
+    VOID            reduce using rule 5 (Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    BOOL            reduce using rule 5 (Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    INT             reduce using rule 5 (Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    $end            reduce using rule 5 (Decl -> Type IDENTIFIER LEFTROUNDPARENTHESES FormalList RIGHTROUNDPARENTHESES LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+
+
+state 43
+
+    (25) Expr -> IDENTIFIER LEFTROUNDPARENTHESES . ExprList RIGHTROUNDPARENTHESES
+    (44) ExprList -> .
+    (45) ExprList -> . Expr Expressions
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    RIGHTROUNDPARENTHESES reduce using rule 44 (ExprList -> .)
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    ExprList                       shift and go to state 68
+    Expr                           shift and go to state 69
+
+state 44
+
+    (40) Expr -> IDENTIFIER ASSIGN . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 70
+
+state 45
+
+    (23) Expr -> LEFTROUNDPARENTHESES Expr . RIGHTROUNDPARENTHESES
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    RIGHTROUNDPARENTHESES shift and go to state 71
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 46
+
+    (20) Stmt -> LEFTCURLYBRACKET Stmts . RIGHTCURLYBRACKET
+    (22) Stmts -> Stmts . Stmt
+    (12) Stmt -> . WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (13) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (15) Stmt -> . RETURN SEMICOLON
+    (16) Stmt -> . RETURN Expr SEMICOLON
+    (17) Stmt -> . Type IDENTIFIER SEMICOLON
+    (18) Stmt -> . Expr SEMICOLON
+    (19) Stmt -> .
+    (20) Stmt -> . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+  ! shift/reduce conflict for RIGHTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for LEFTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for LEFTROUNDPARENTHESES resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RIGHTCURLYBRACKET shift and go to state 72
+    WHILE           shift and go to state 31
+    IF              shift and go to state 33
+    RETURN          shift and go to state 34
+    LEFTCURLYBRACKET shift and go to state 28
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Stmt                           shift and go to state 30
+    Expr                           shift and go to state 32
+    Type                           shift and go to state 35
+
+state 47
+
+    (12) Stmt -> WHILE LEFTROUNDPARENTHESES . Expr RIGHTROUNDPARENTHESES Stmt
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 73
+
+state 48
+
+    (18) Stmt -> Expr SEMICOLON .
+    RIGHTCURLYBRACKET reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    WHILE           reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    IF              reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    RETURN          reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    LEFTCURLYBRACKET reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    BOOL            reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    INT             reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    LEFTROUNDPARENTHESES reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    IDENTIFIER      reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    MINUS           reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    NOT             reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    FALSE           reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    TRUE            reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    NUMBER          reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+    ELSE            reduce using rule 18 (Stmt -> Expr SEMICOLON .)
+
+
+state 49
+
+    (28) Expr -> Expr GREATER . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 74
+
+state 50
+
+    (29) Expr -> Expr LOWER . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 75
+
+state 51
+
+    (30) Expr -> Expr GREATEREQUAL . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 76
+
+state 52
+
+    (31) Expr -> Expr LOWEREQUAL . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 77
+
+state 53
+
+    (32) Expr -> Expr DIFFERENT . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 78
+
+state 54
+
+    (33) Expr -> Expr AND . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 79
+
+state 55
+
+    (34) Expr -> Expr OR . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 80
+
+state 56
+
+    (35) Expr -> Expr EQUALS . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 81
+
+state 57
+
+    (36) Expr -> Expr DIVIDE . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 82
+
+state 58
+
+    (37) Expr -> Expr MULTIPLY . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 83
+
+state 59
+
+    (38) Expr -> Expr MINUS . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 84
+
+state 60
+
+    (39) Expr -> Expr PLUS . Expr
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 85
+
+state 61
+
+    (13) Stmt -> IF LEFTROUNDPARENTHESES . Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> IF LEFTROUNDPARENTHESES . Expr RIGHTROUNDPARENTHESES Stmt
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 86
+
+state 62
+
+    (15) Stmt -> RETURN SEMICOLON .
+    RIGHTCURLYBRACKET reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    WHILE           reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    IF              reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    RETURN          reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    LEFTCURLYBRACKET reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    BOOL            reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    INT             reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    LEFTROUNDPARENTHESES reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    IDENTIFIER      reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    MINUS           reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    NOT             reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    FALSE           reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    TRUE            reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    NUMBER          reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+    ELSE            reduce using rule 15 (Stmt -> RETURN SEMICOLON .)
+
+
+state 63
+
+    (16) Stmt -> RETURN Expr . SEMICOLON
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       shift and go to state 87
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 64
+
+    (17) Stmt -> Type IDENTIFIER . SEMICOLON
+    SEMICOLON       shift and go to state 88
+
+
+state 65
+
+    (26) Expr -> MINUS Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 26 (Expr -> MINUS Expr .)
+    GREATER         reduce using rule 26 (Expr -> MINUS Expr .)
+    LOWER           reduce using rule 26 (Expr -> MINUS Expr .)
+    GREATEREQUAL    reduce using rule 26 (Expr -> MINUS Expr .)
+    LOWEREQUAL      reduce using rule 26 (Expr -> MINUS Expr .)
+    DIFFERENT       reduce using rule 26 (Expr -> MINUS Expr .)
+    AND             reduce using rule 26 (Expr -> MINUS Expr .)
+    OR              reduce using rule 26 (Expr -> MINUS Expr .)
+    EQUALS          reduce using rule 26 (Expr -> MINUS Expr .)
+    DIVIDE          reduce using rule 26 (Expr -> MINUS Expr .)
+    MULTIPLY        reduce using rule 26 (Expr -> MINUS Expr .)
+    MINUS           reduce using rule 26 (Expr -> MINUS Expr .)
+    PLUS            reduce using rule 26 (Expr -> MINUS Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 26 (Expr -> MINUS Expr .)
+    COMMA           reduce using rule 26 (Expr -> MINUS Expr .)
+
+
+state 66
+
+    (27) Expr -> NOT Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 27 (Expr -> NOT Expr .)
+    GREATER         reduce using rule 27 (Expr -> NOT Expr .)
+    LOWER           reduce using rule 27 (Expr -> NOT Expr .)
+    GREATEREQUAL    reduce using rule 27 (Expr -> NOT Expr .)
+    LOWEREQUAL      reduce using rule 27 (Expr -> NOT Expr .)
+    DIFFERENT       reduce using rule 27 (Expr -> NOT Expr .)
+    AND             reduce using rule 27 (Expr -> NOT Expr .)
+    OR              reduce using rule 27 (Expr -> NOT Expr .)
+    EQUALS          reduce using rule 27 (Expr -> NOT Expr .)
+    DIVIDE          reduce using rule 27 (Expr -> NOT Expr .)
+    MULTIPLY        reduce using rule 27 (Expr -> NOT Expr .)
+    MINUS           reduce using rule 27 (Expr -> NOT Expr .)
+    PLUS            reduce using rule 27 (Expr -> NOT Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 27 (Expr -> NOT Expr .)
+    COMMA           reduce using rule 27 (Expr -> NOT Expr .)
+
+
+state 67
+
+    (9) Identifiers -> COMMA Type IDENTIFIER Identifiers .
+    RIGHTROUNDPARENTHESES reduce using rule 9 (Identifiers -> COMMA Type IDENTIFIER Identifiers .)
+
+
+state 68
+
+    (25) Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList . RIGHTROUNDPARENTHESES
+    RIGHTROUNDPARENTHESES shift and go to state 89
+
+
+state 69
+
+    (45) ExprList -> Expr . Expressions
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    (46) Expressions -> .
+    (47) Expressions -> . COMMA Expr Expressions
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+    RIGHTROUNDPARENTHESES reduce using rule 46 (Expressions -> .)
+    COMMA           shift and go to state 91
+
+    Expressions                    shift and go to state 90
+
+state 70
+
+    (40) Expr -> IDENTIFIER ASSIGN Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 40 (Expr -> IDENTIFIER ASSIGN Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 40 (Expr -> IDENTIFIER ASSIGN Expr .)
+    COMMA           reduce using rule 40 (Expr -> IDENTIFIER ASSIGN Expr .)
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 71
+
+    (23) Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .
+    SEMICOLON       reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    GREATER         reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    LOWER           reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    GREATEREQUAL    reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    LOWEREQUAL      reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    DIFFERENT       reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    AND             reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    OR              reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    EQUALS          reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    DIVIDE          reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    MULTIPLY        reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    MINUS           reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    PLUS            reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    RIGHTROUNDPARENTHESES reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+    COMMA           reduce using rule 23 (Expr -> LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES .)
+
+
+state 72
+
+    (20) Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .
+    RIGHTCURLYBRACKET reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    WHILE           reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    IF              reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    RETURN          reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    LEFTCURLYBRACKET reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    BOOL            reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    INT             reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    LEFTROUNDPARENTHESES reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    IDENTIFIER      reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    MINUS           reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    NOT             reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    FALSE           reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    TRUE            reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    NUMBER          reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+    ELSE            reduce using rule 20 (Stmt -> LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET .)
+
+
+state 73
+
+    (12) Stmt -> WHILE LEFTROUNDPARENTHESES Expr . RIGHTROUNDPARENTHESES Stmt
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    RIGHTROUNDPARENTHESES shift and go to state 92
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 74
+
+    (28) Expr -> Expr GREATER Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    GREATER         reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    LOWER           reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    GREATEREQUAL    reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    LOWEREQUAL      reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    DIFFERENT       reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    AND             reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    OR              reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    EQUALS          reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    COMMA           reduce using rule 28 (Expr -> Expr GREATER Expr .)
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 75
+
+    (29) Expr -> Expr LOWER Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    GREATER         reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    LOWER           reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    GREATEREQUAL    reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    LOWEREQUAL      reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    DIFFERENT       reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    AND             reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    OR              reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    EQUALS          reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    COMMA           reduce using rule 29 (Expr -> Expr LOWER Expr .)
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 76
+
+    (30) Expr -> Expr GREATEREQUAL Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    GREATER         reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    LOWER           reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    GREATEREQUAL    reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    LOWEREQUAL      reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    DIFFERENT       reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    AND             reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    OR              reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    EQUALS          reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    COMMA           reduce using rule 30 (Expr -> Expr GREATEREQUAL Expr .)
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 77
+
+    (31) Expr -> Expr LOWEREQUAL Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    GREATER         reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    LOWER           reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    GREATEREQUAL    reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    LOWEREQUAL      reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    DIFFERENT       reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    AND             reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    OR              reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    EQUALS          reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    COMMA           reduce using rule 31 (Expr -> Expr LOWEREQUAL Expr .)
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 78
+
+    (32) Expr -> Expr DIFFERENT Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    DIFFERENT       reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    AND             reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    OR              reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    EQUALS          reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    COMMA           reduce using rule 32 (Expr -> Expr DIFFERENT Expr .)
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 79
+
+    (33) Expr -> Expr AND Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 33 (Expr -> Expr AND Expr .)
+    AND             reduce using rule 33 (Expr -> Expr AND Expr .)
+    OR              reduce using rule 33 (Expr -> Expr AND Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 33 (Expr -> Expr AND Expr .)
+    COMMA           reduce using rule 33 (Expr -> Expr AND Expr .)
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 80
+
+    (34) Expr -> Expr OR Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 34 (Expr -> Expr OR Expr .)
+    OR              reduce using rule 34 (Expr -> Expr OR Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 34 (Expr -> Expr OR Expr .)
+    COMMA           reduce using rule 34 (Expr -> Expr OR Expr .)
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 81
+
+    (35) Expr -> Expr EQUALS Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    DIFFERENT       reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    AND             reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    OR              reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    EQUALS          reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    COMMA           reduce using rule 35 (Expr -> Expr EQUALS Expr .)
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 82
+
+    (36) Expr -> Expr DIVIDE Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    GREATER         reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    LOWER           reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    GREATEREQUAL    reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    LOWEREQUAL      reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    DIFFERENT       reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    AND             reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    OR              reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    EQUALS          reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    DIVIDE          reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    MULTIPLY        reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    MINUS           reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    PLUS            reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+    COMMA           reduce using rule 36 (Expr -> Expr DIVIDE Expr .)
+
+
+state 83
+
+    (37) Expr -> Expr MULTIPLY Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    GREATER         reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    LOWER           reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    GREATEREQUAL    reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    LOWEREQUAL      reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    DIFFERENT       reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    AND             reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    OR              reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    EQUALS          reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    DIVIDE          reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    MULTIPLY        reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    MINUS           reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    PLUS            reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+    COMMA           reduce using rule 37 (Expr -> Expr MULTIPLY Expr .)
+
+
+state 84
+
+    (38) Expr -> Expr MINUS Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    GREATER         reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    LOWER           reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    GREATEREQUAL    reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    LOWEREQUAL      reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    DIFFERENT       reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    AND             reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    OR              reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    EQUALS          reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    MINUS           reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    PLUS            reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    COMMA           reduce using rule 38 (Expr -> Expr MINUS Expr .)
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+
+
+state 85
+
+    (39) Expr -> Expr PLUS Expr .
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    SEMICOLON       reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    GREATER         reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    LOWER           reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    GREATEREQUAL    reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    LOWEREQUAL      reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    DIFFERENT       reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    AND             reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    OR              reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    EQUALS          reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    MINUS           reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    PLUS            reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    RIGHTROUNDPARENTHESES reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    COMMA           reduce using rule 39 (Expr -> Expr PLUS Expr .)
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+
+
+state 86
+
+    (13) Stmt -> IF LEFTROUNDPARENTHESES Expr . RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> IF LEFTROUNDPARENTHESES Expr . RIGHTROUNDPARENTHESES Stmt
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    RIGHTROUNDPARENTHESES shift and go to state 93
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+
+
+state 87
+
+    (16) Stmt -> RETURN Expr SEMICOLON .
+    RIGHTCURLYBRACKET reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    WHILE           reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    IF              reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    RETURN          reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    LEFTCURLYBRACKET reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    BOOL            reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    INT             reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    LEFTROUNDPARENTHESES reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    IDENTIFIER      reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    MINUS           reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    NOT             reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    FALSE           reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    TRUE            reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    NUMBER          reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+    ELSE            reduce using rule 16 (Stmt -> RETURN Expr SEMICOLON .)
+
+
+state 88
+
+    (17) Stmt -> Type IDENTIFIER SEMICOLON .
+    RIGHTCURLYBRACKET reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    WHILE           reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    IF              reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    RETURN          reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    LEFTCURLYBRACKET reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    BOOL            reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    INT             reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    LEFTROUNDPARENTHESES reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    IDENTIFIER      reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    MINUS           reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    NOT             reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    FALSE           reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    TRUE            reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    NUMBER          reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+    ELSE            reduce using rule 17 (Stmt -> Type IDENTIFIER SEMICOLON .)
+
+
+state 89
+
+    (25) Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .
+    SEMICOLON       reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    GREATER         reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    LOWER           reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    GREATEREQUAL    reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    LOWEREQUAL      reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    DIFFERENT       reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    AND             reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    OR              reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    EQUALS          reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    DIVIDE          reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    MULTIPLY        reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    MINUS           reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    PLUS            reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    RIGHTROUNDPARENTHESES reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+    COMMA           reduce using rule 25 (Expr -> IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES .)
+
+
+state 90
+
+    (45) ExprList -> Expr Expressions .
+    RIGHTROUNDPARENTHESES reduce using rule 45 (ExprList -> Expr Expressions .)
+
+
+state 91
+
+    (47) Expressions -> COMMA . Expr Expressions
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 94
+
+state 92
+
+    (12) Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES . Stmt
+    (12) Stmt -> . WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (13) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (15) Stmt -> . RETURN SEMICOLON
+    (16) Stmt -> . RETURN Expr SEMICOLON
+    (17) Stmt -> . Type IDENTIFIER SEMICOLON
+    (18) Stmt -> . Expr SEMICOLON
+    (19) Stmt -> .
+    (20) Stmt -> . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for LEFTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for LEFTROUNDPARENTHESES resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    WHILE           shift and go to state 31
+    IF              shift and go to state 33
+    RETURN          shift and go to state 34
+    RIGHTCURLYBRACKET reduce using rule 19 (Stmt -> .)
+    ELSE            reduce using rule 19 (Stmt -> .)
+    LEFTCURLYBRACKET shift and go to state 28
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 32
+    Stmt                           shift and go to state 95
+    Type                           shift and go to state 35
+
+state 93
+
+    (13) Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES . Stmt ELSE Stmt
+    (14) Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES . Stmt
+    (12) Stmt -> . WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (13) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (15) Stmt -> . RETURN SEMICOLON
+    (16) Stmt -> . RETURN Expr SEMICOLON
+    (17) Stmt -> . Type IDENTIFIER SEMICOLON
+    (18) Stmt -> . Expr SEMICOLON
+    (19) Stmt -> .
+    (20) Stmt -> . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for LEFTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for LEFTROUNDPARENTHESES resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    WHILE           shift and go to state 31
+    IF              shift and go to state 33
+    RETURN          shift and go to state 34
+    RIGHTCURLYBRACKET reduce using rule 19 (Stmt -> .)
+    ELSE            reduce using rule 19 (Stmt -> .)
+    LEFTCURLYBRACKET shift and go to state 28
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 32
+    Stmt                           shift and go to state 96
+    Type                           shift and go to state 35
+
+state 94
+
+    (47) Expressions -> COMMA Expr . Expressions
+    (28) Expr -> Expr . GREATER Expr
+    (29) Expr -> Expr . LOWER Expr
+    (30) Expr -> Expr . GREATEREQUAL Expr
+    (31) Expr -> Expr . LOWEREQUAL Expr
+    (32) Expr -> Expr . DIFFERENT Expr
+    (33) Expr -> Expr . AND Expr
+    (34) Expr -> Expr . OR Expr
+    (35) Expr -> Expr . EQUALS Expr
+    (36) Expr -> Expr . DIVIDE Expr
+    (37) Expr -> Expr . MULTIPLY Expr
+    (38) Expr -> Expr . MINUS Expr
+    (39) Expr -> Expr . PLUS Expr
+    (46) Expressions -> .
+    (47) Expressions -> . COMMA Expr Expressions
+    GREATER         shift and go to state 49
+    LOWER           shift and go to state 50
+    GREATEREQUAL    shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    DIFFERENT       shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+    EQUALS          shift and go to state 56
+    DIVIDE          shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    MINUS           shift and go to state 59
+    PLUS            shift and go to state 60
+    RIGHTROUNDPARENTHESES reduce using rule 46 (Expressions -> .)
+    COMMA           shift and go to state 91
+
+    Expressions                    shift and go to state 97
+
+state 95
+
+    (12) Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .
+    RIGHTCURLYBRACKET reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    WHILE           reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    IF              reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    RETURN          reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    LEFTCURLYBRACKET reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    BOOL            reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    INT             reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    LEFTROUNDPARENTHESES reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    IDENTIFIER      reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    MINUS           reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    NOT             reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    FALSE           reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    TRUE            reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    NUMBER          reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    ELSE            reduce using rule 12 (Stmt -> WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+
+
+state 96
+
+    (13) Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt . ELSE Stmt
+    (14) Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 98
+    RIGHTCURLYBRACKET reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    WHILE           reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    IF              reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    RETURN          reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    LEFTCURLYBRACKET reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    BOOL            reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    INT             reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    LEFTROUNDPARENTHESES reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    IDENTIFIER      reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    MINUS           reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    NOT             reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    FALSE           reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    TRUE            reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+    NUMBER          reduce using rule 14 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt .)
+
+
+state 97
+
+    (47) Expressions -> COMMA Expr Expressions .
+    RIGHTROUNDPARENTHESES reduce using rule 47 (Expressions -> COMMA Expr Expressions .)
+
+
+state 98
+
+    (13) Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE . Stmt
+    (12) Stmt -> . WHILE LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (13) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt
+    (14) Stmt -> . IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt
+    (15) Stmt -> . RETURN SEMICOLON
+    (16) Stmt -> . RETURN Expr SEMICOLON
+    (17) Stmt -> . Type IDENTIFIER SEMICOLON
+    (18) Stmt -> . Expr SEMICOLON
+    (19) Stmt -> .
+    (20) Stmt -> . LEFTCURLYBRACKET Stmts RIGHTCURLYBRACKET
+    (10) Type -> . BOOL
+    (11) Type -> . INT
+    (23) Expr -> . LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES
+    (24) Expr -> . IDENTIFIER
+    (25) Expr -> . IDENTIFIER LEFTROUNDPARENTHESES ExprList RIGHTROUNDPARENTHESES
+    (26) Expr -> . MINUS Expr
+    (27) Expr -> . NOT Expr
+    (28) Expr -> . Expr GREATER Expr
+    (29) Expr -> . Expr LOWER Expr
+    (30) Expr -> . Expr GREATEREQUAL Expr
+    (31) Expr -> . Expr LOWEREQUAL Expr
+    (32) Expr -> . Expr DIFFERENT Expr
+    (33) Expr -> . Expr AND Expr
+    (34) Expr -> . Expr OR Expr
+    (35) Expr -> . Expr EQUALS Expr
+    (36) Expr -> . Expr DIVIDE Expr
+    (37) Expr -> . Expr MULTIPLY Expr
+    (38) Expr -> . Expr MINUS Expr
+    (39) Expr -> . Expr PLUS Expr
+    (40) Expr -> . IDENTIFIER ASSIGN Expr
+    (41) Expr -> . FALSE
+    (42) Expr -> . TRUE
+    (43) Expr -> . NUMBER
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for LEFTCURLYBRACKET resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for LEFTROUNDPARENTHESES resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    WHILE           shift and go to state 31
+    IF              shift and go to state 33
+    RETURN          shift and go to state 34
+    RIGHTCURLYBRACKET reduce using rule 19 (Stmt -> .)
+    ELSE            reduce using rule 19 (Stmt -> .)
+    LEFTCURLYBRACKET shift and go to state 28
+    BOOL            shift and go to state 6
+    INT             shift and go to state 7
+    LEFTROUNDPARENTHESES shift and go to state 27
+    IDENTIFIER      shift and go to state 26
+    MINUS           shift and go to state 36
+    NOT             shift and go to state 37
+    FALSE           shift and go to state 38
+    TRUE            shift and go to state 39
+    NUMBER          shift and go to state 40
+
+    Expr                           shift and go to state 32
+    Stmt                           shift and go to state 99
+    Type                           shift and go to state 35
+
+state 99
+
+    (13) Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .
+    RIGHTCURLYBRACKET reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    WHILE           reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    IF              reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    RETURN          reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    LEFTCURLYBRACKET reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    BOOL            reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    INT             reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    LEFTROUNDPARENTHESES reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    IDENTIFIER      reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    MINUS           reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    NOT             reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    FALSE           reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    TRUE            reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    NUMBER          reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+    ELSE            reduce using rule 13 (Stmt -> IF LEFTROUNDPARENTHESES Expr RIGHTROUNDPARENTHESES Stmt ELSE Stmt .)
+
+
+Conflicts:
+
+shift/reduce conflict for RIGHTCURLYBRACKET in state 23 resolved as shift
+shift/reduce conflict for WHILE in state 23 resolved as shift
+shift/reduce conflict for IF in state 23 resolved as shift
+shift/reduce conflict for RETURN in state 23 resolved as shift
+shift/reduce conflict for LEFTCURLYBRACKET in state 23 resolved as shift
+shift/reduce conflict for BOOL in state 23 resolved as shift
+shift/reduce conflict for INT in state 23 resolved as shift
+shift/reduce conflict for LEFTROUNDPARENTHESES in state 23 resolved as shift
+shift/reduce conflict for IDENTIFIER in state 23 resolved as shift
+shift/reduce conflict for MINUS in state 23 resolved as shift
+shift/reduce conflict for NOT in state 23 resolved as shift
+shift/reduce conflict for FALSE in state 23 resolved as shift
+shift/reduce conflict for TRUE in state 23 resolved as shift
+shift/reduce conflict for NUMBER in state 23 resolved as shift
+shift/reduce conflict for RIGHTCURLYBRACKET in state 25 resolved as shift
+shift/reduce conflict for WHILE in state 25 resolved as shift
+shift/reduce conflict for IF in state 25 resolved as shift
+shift/reduce conflict for RETURN in state 25 resolved as shift
+shift/reduce conflict for LEFTCURLYBRACKET in state 25 resolved as shift
+shift/reduce conflict for BOOL in state 25 resolved as shift
+shift/reduce conflict for INT in state 25 resolved as shift
+shift/reduce conflict for LEFTROUNDPARENTHESES in state 25 resolved as shift
+shift/reduce conflict for IDENTIFIER in state 25 resolved as shift
+shift/reduce conflict for MINUS in state 25 resolved as shift
+shift/reduce conflict for NOT in state 25 resolved as shift
+shift/reduce conflict for FALSE in state 25 resolved as shift
+shift/reduce conflict for TRUE in state 25 resolved as shift
+shift/reduce conflict for NUMBER in state 25 resolved as shift
+shift/reduce conflict for RIGHTCURLYBRACKET in state 46 resolved as shift
+shift/reduce conflict for WHILE in state 46 resolved as shift
+shift/reduce conflict for IF in state 46 resolved as shift
+shift/reduce conflict for RETURN in state 46 resolved as shift
+shift/reduce conflict for LEFTCURLYBRACKET in state 46 resolved as shift
+shift/reduce conflict for BOOL in state 46 resolved as shift
+shift/reduce conflict for INT in state 46 resolved as shift
+shift/reduce conflict for LEFTROUNDPARENTHESES in state 46 resolved as shift
+shift/reduce conflict for IDENTIFIER in state 46 resolved as shift
+shift/reduce conflict for MINUS in state 46 resolved as shift
+shift/reduce conflict for NOT in state 46 resolved as shift
+shift/reduce conflict for FALSE in state 46 resolved as shift
+shift/reduce conflict for TRUE in state 46 resolved as shift
+shift/reduce conflict for NUMBER in state 46 resolved as shift
+shift/reduce conflict for WHILE in state 92 resolved as shift
+shift/reduce conflict for IF in state 92 resolved as shift
+shift/reduce conflict for RETURN in state 92 resolved as shift
+shift/reduce conflict for LEFTCURLYBRACKET in state 92 resolved as shift
+shift/reduce conflict for BOOL in state 92 resolved as shift
+shift/reduce conflict for INT in state 92 resolved as shift
+shift/reduce conflict for LEFTROUNDPARENTHESES in state 92 resolved as shift
+shift/reduce conflict for IDENTIFIER in state 92 resolved as shift
+shift/reduce conflict for MINUS in state 92 resolved as shift
+shift/reduce conflict for NOT in state 92 resolved as shift
+shift/reduce conflict for FALSE in state 92 resolved as shift
+shift/reduce conflict for TRUE in state 92 resolved as shift
+shift/reduce conflict for NUMBER in state 92 resolved as shift
+shift/reduce conflict for WHILE in state 93 resolved as shift
+shift/reduce conflict for IF in state 93 resolved as shift
+shift/reduce conflict for RETURN in state 93 resolved as shift
+shift/reduce conflict for LEFTCURLYBRACKET in state 93 resolved as shift
+shift/reduce conflict for BOOL in state 93 resolved as shift
+shift/reduce conflict for INT in state 93 resolved as shift
+shift/reduce conflict for LEFTROUNDPARENTHESES in state 93 resolved as shift
+shift/reduce conflict for IDENTIFIER in state 93 resolved as shift
+shift/reduce conflict for MINUS in state 93 resolved as shift
+shift/reduce conflict for NOT in state 93 resolved as shift
+shift/reduce conflict for FALSE in state 93 resolved as shift
+shift/reduce conflict for TRUE in state 93 resolved as shift
+shift/reduce conflict for NUMBER in state 93 resolved as shift
+shift/reduce conflict for ELSE in state 96 resolved as shift
+shift/reduce conflict for WHILE in state 98 resolved as shift
+shift/reduce conflict for IF in state 98 resolved as shift
+shift/reduce conflict for RETURN in state 98 resolved as shift
+shift/reduce conflict for LEFTCURLYBRACKET in state 98 resolved as shift
+shift/reduce conflict for BOOL in state 98 resolved as shift
+shift/reduce conflict for INT in state 98 resolved as shift
+shift/reduce conflict for LEFTROUNDPARENTHESES in state 98 resolved as shift
+shift/reduce conflict for IDENTIFIER in state 98 resolved as shift
+shift/reduce conflict for MINUS in state 98 resolved as shift
+shift/reduce conflict for NOT in state 98 resolved as shift
+shift/reduce conflict for FALSE in state 98 resolved as shift
+shift/reduce conflict for TRUE in state 98 resolved as shift
+shift/reduce conflict for NUMBER in state 98 resolved as shift

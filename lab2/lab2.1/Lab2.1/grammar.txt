@@ -1,0 +1,31 @@
+Program -> Decls.
+Decls -> Decl Decls | .
+
+Decl -> Type id lroundpar FormalList rroundpar lcurlypar Stmts rcurlypar
+       | void id lroundpar FormalList rroundpar lcurlypar Stmts rcurlypar.
+
+FormalList -> Type id Params |  .
+Params -> comma Type id | .
+
+Type -> int | bool .
+
+Stmt -> lcurlypar Stmts rcurlypar
+      |  if lroundpar Expr rroundpar Stmt else Stmt
+      |  if lroundpar Expr rroundpar Stmt
+      |  while lroundpar Expr rroundpar Stmt
+      |  return Expr semicolon
+      |  return semicolon
+      |  Expr semicolon
+      |  Type id semicolon .
+Stmts -> Stmt Stmts | .
+Expr -> Expr bop Expr
+      | uop Expr
+      | int
+      | true
+      | false
+	  | id assign Expr
+      | id
+      | id lroundpar ExprList rroundpar
+      | lroundpar Expr rroundpar.
+ExprList -> Expr ExpressionsList |  .
+ExpressionsList -> comma Expr | .

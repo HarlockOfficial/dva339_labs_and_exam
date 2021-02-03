@@ -1,0 +1,3 @@
+
+class CompilerException(Exception):
+    pass

@@ -1,0 +1,13 @@
+//10
+//11
+//12
+//13
+//14
+//15
+//16
+//17
+//18
+//19
+void main(){int x;int y;x = y = 10; loop(x,y);}
+void loop(int loopcount, int start){int i;i=0;while(i<loopcount){print(start);start=start+1;i=i+1;}}
+

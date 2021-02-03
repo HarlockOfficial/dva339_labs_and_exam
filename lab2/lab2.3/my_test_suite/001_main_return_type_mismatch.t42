@@ -1,0 +1,6 @@
+//INTERPRETATION ERROR
+int main(){
+    bool x;
+    x = true;
+    return x;
+}

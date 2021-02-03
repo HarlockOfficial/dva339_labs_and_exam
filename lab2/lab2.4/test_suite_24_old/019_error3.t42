@@ -1,0 +1,6 @@
+// fail 6 1
+
+void main() {
+  int x; x = f();
+}
+int f() {}

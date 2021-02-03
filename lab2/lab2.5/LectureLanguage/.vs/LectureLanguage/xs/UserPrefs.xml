@@ -1,0 +1,44 @@
+﻿<Properties StartupConfiguration="{A8680ED8-1E20-4B9E-9A09-B8B8A7B121F1}|Default">
+  <MonoDevelop.Ide.ItemProperties.LectureLanguage PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Parser/Program.cs">
+    <Files>
+      <File FileName="Parser/AbstractSyntax/AbstracSyntax.cs" Line="169" Column="58" />
+      <File FileName="Parser/Evaluator/Evaluator.cs" Line="147" Column="45" />
+      <File FileName="Parser/Evaluator/Prepass.cs" Line="191" Column="30" />
+      <File FileName="Parser/Typechecker/Typechecker.cs" Line="96" Column="10" />
+      <File FileName="Parser/Parser/Parser.y" Line="18" Column="18" />
+      <File FileName="Parser/Parser/Lexer.x" Line="17" Column="35" />
+      <File FileName="Parser/Prettyprinter/PrettyAbstractSyntax.cs" Line="198" Column="44" />
+      <File FileName="Parser/Parser/Parser.lst" Line="1" Column="1" />
+      <File FileName="Parser/Parser/Parser.conflicts" Line="1" Column="1" />
+      <File FileName="Parser/Parser/Generated/Parser.cs" Line="27" Column="15" />
+      <File FileName="Parser/Parser/Generated/Lexer.cs" Line="1" Column="1" />
+      <File FileName="Parser/General.cs" Line="10" Column="35" />
+      <File FileName="Parser/Program.cs" Line="32" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LectureLanguage" expanded="True">
+            <Node name="LectureLanguage" expanded="True">
+              <Node name="AbstractSyntax" expanded="True" />
+              <Node name="Evaluator" expanded="True" />
+              <Node name="Parser" expanded="True">
+                <Node name="Generated" expanded="True" />
+              </Node>
+              <Node name="Prettyprinter" expanded="True" />
+              <Node name="Typechecker" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,10 @@
+// fail 4 10
+void main() {
+    print(a());
+    print(d);
+}
+
+int a() {
+    int d;
+    return d + 3;
+}

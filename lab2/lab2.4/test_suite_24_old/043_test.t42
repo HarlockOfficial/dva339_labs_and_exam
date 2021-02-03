@@ -1,0 +1,2 @@
+// fail 2 21
+void main() {int x; x = foo(); } void foo(){int x; x = 3;}

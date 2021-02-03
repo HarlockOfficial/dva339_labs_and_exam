@@ -1,0 +1,11 @@
+//fail 9 9
+bool ret_true(){
+    bool x;
+    return x = true;
+}
+
+int main(){
+    int x;
+    x = !ret_true();
+    return 0;
+}

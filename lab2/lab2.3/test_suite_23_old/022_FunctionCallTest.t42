@@ -1,0 +1,14 @@
+// 1
+// False 3
+
+bool main() {
+	bool x;
+	x = true; 
+	while(x)x=f(1); 
+	print(x, 3); 
+	return x;
+}
+bool f(int i){
+	print(i); 
+	return false;
+}

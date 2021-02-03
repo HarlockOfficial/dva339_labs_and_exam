@@ -1,0 +1,9 @@
+// fail 8 11
+void main() {
+    int d;
+    print(a());
+}
+
+int a() {
+    return d + 3;
+}

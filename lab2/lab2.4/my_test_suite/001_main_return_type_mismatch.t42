@@ -1,0 +1,6 @@
+//fail 5 5
+int main(){
+    bool x;
+    x = true;
+    return x;
+}

@@ -1,0 +1,20 @@
+// 1
+// 2
+// 3
+// 4
+void main ()
+{
+  int x; bool b;
+	x = 0;
+	b = true;
+	
+	while(b)
+	{
+		if(x == 3)
+			b = false;
+		x = x + 1;
+		print(x);
+	}
+	
+	return;
+}

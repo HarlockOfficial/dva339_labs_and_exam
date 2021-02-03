@@ -1,0 +1,30 @@
+// pass
+
+void main()
+            {
+                int n;
+                int c;
+                int i;
+                i = 0;
+                c = 1;
+                n = 10;
+ 
+                while( c <= n )
+                {
+                    print(Fibonacci(i));
+                    i = i + 1; 
+                    c = c + 1;
+                }
+ 
+                return;
+            }
+ 
+            int Fibonacci(int n)
+            {
+                if ( n == 0 )
+                    return 0;
+                else if ( n == 1 )
+                    return 1;
+                else
+                    return Fibonacci(n-1) + Fibonacci(n-2);
+            }

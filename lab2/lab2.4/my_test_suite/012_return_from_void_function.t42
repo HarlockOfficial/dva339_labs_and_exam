@@ -1,0 +1,11 @@
+//fail 10 5
+
+int main(){
+    int x;
+    foo(x+1);
+    return x;
+}
+
+void foo(int n){
+    return n/2;
+}

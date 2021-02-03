@@ -1,0 +1,6 @@
+//INTERPRETATION ERROR
+
+int main(){
+    print(undefined());
+    return 0;
+}

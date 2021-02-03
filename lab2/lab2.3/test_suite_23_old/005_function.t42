@@ -1,0 +1,4 @@
+//1
+void main(){int x;x=1;foo(5);print(x);}
+void foo(int x){x=2;}
+

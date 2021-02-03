@@ -1,0 +1,2 @@
+// fail 2 48
+int main(){ bool x; int v; if(x){ int y;}  v = y + 3; }

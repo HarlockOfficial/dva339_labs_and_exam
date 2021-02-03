@@ -1,0 +1,17 @@
+//pass
+void main(){
+    int n;
+	n = 15129;	
+    int i;
+    i = 1;
+    bool result_found;
+    while(i*i<n){
+        i = i + 1;
+		//print(i);
+        result_found = (i*i) == n || result_found;
+    }
+    print(result_found);
+    if(result_found){
+        print(i);
+    }
+}

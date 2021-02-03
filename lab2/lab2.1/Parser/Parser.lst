@@ -1,0 +1,67 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <Parser.y - 11/25/2020 3:11:40 PM>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  C02ZX10FMD6Q
+//  DateTime: 11/25/2020 3:11:46 PM
+//  UserName: dhn03
+// ==========================================================================
+
+
+
+%output=Generated/Parser.cs
+%namespace Parser
+
+%union {
+  public string Value;
+  public Expression Expression;
+}
+
+%token <Value> ID
+%token <Value> NUM
+%token <Value> LEXERR
+
+%token COMMA ","
+%token ASN "="
+%token LPAR "("
+%token RPAR ")"
+
+%token ADD "+"
+%token SUB "-"
+%token MUL "*"
+%token DIV "/"
+
+%token LET "let"
+%token IN "in"
+
+
+%%
+// Error: There are 2 non-terminating NonTerminal Symbols
+   //  {E, $accept}
+// Warning: Terminating E fixes the following size-2 NonTerminal set
+   // {E, $accept}
+// -----------------------------------------------------------------
+
+E : E "," E1
+  | E
+  ;
+
+E1: "let" ID "=" E "in" E1
+  | "let" ID ID "=" E "in" E1
+  | E1 OPs E1
+  | ID E1
+  | "(" E ")"
+  | ID
+  | NUM
+  ;
+
+OPs : "+" | "-" | "*" | "/" ;
+
+
+
+%%
+
+public Expression Program;
+public Parser(Scanner s) : base(s) { }// ==========================================================================
+

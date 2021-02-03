@@ -1,0 +1,13 @@
+// pass
+void main() {
+    print(a(false));
+}
+
+int a(bool b) {
+    int c;
+    if (b)
+        c = 3;
+    else
+        return 5;
+    return c;
+}

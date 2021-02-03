@@ -1,0 +1,14 @@
+// pass
+
+bool a(int b) {
+    if (b > 10)
+        return false;
+    while (b < 10) {
+        print(b);
+        b = b + 1;
+    }
+    return true;
+}
+void main() {
+    print(a(2));
+}

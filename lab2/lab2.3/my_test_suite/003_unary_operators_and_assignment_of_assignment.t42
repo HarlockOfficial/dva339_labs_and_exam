@@ -1,0 +1,21 @@
+//False
+//5 5
+//True -5
+
+void main(){
+    bool x; //works if x is predefined as false
+    print(x);
+    if(!x){
+        int y;  //works if y predefined as 0
+        int z;
+        if (y<z+1){
+            z = y = 5;
+        }
+        print(y, z);
+        if(z == y){
+            x = !x;
+            z = -z;
+        }
+    }
+    print(x, z);
+}

@@ -1,0 +1,8 @@
+// pass
+
+int main(){
+	bool value;
+	value = ((100*99 - 65/2) < 4*2/1) && (777-77-7*99 >= -98) || (false || true && true && (1>0));
+	print(value, !value, value && !value || value);
+	return 1;
+}
